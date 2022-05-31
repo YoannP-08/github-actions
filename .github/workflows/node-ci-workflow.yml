@@ -1,0 +1,15 @@
+name: first-node-ci-workflow
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # This step checks out a copy of your repository.
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '17'
+      - run: corepack enable
+      - run: yarn install
+      - run: yarn lint
+      - run: yarn build
